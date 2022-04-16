@@ -21,7 +21,7 @@ exports.create = (req, res) => {
     const { userId, nom, prenom, age} = req.body;
   
     // User the connection
-    connection.query('INSERT INTO useer SET userId = ?, nom = ?, prenom = ?, age = ?', [userId, nom, prenom, age], (err, rows) => {
+    connection.query('INSERT INTO usser SET userId = ?, nom = ?, prenom = ?, age = ?', [userId, nom, prenom, age], (err, rows) => {
       if (!err) {
         //res.json("user added succefully");
         res.redirect('/')
@@ -38,7 +38,7 @@ exports.create = (req, res) => {
 exports.delete = (req, res) => {
 
   // Delete a record
-  connection.query('DELETE FROM useer WHERE userId = ?', [req.params.userId], (err, rows) => {
+  connection.query('DELETE FROM usser WHERE userId = ?', [req.params.userId], (err, rows) => {
     if(!err) {
    
     res.redirect('/');
@@ -64,29 +64,32 @@ exports.delete = (req, res) => {
  
 // Update User
 exports.update = (req, res) => {
-  const { nom, prenom, age } = req.body;
+  const {userId , nom, prenom, age } = req.body;
   // User the connection
-  connection.query('UPDATE userr SET  nom = ?, prenom = ?, age = ? WHERE userId = ?', [ nom, prenom, age, req.params.id], (err, rows) => {
+  connection.query('UPDATE usser SET  nom = ?, prenom = ?, age = ? WHERE userId = ?', [ nom, prenom, age, userId], (err, rows) => {
 
     if (!err) {
       // User the connection
+      res.redirect('/')
       console.log('update succes')
       // connection.query('SELECT * FROM user WHERE id = ?', [req.params.id], (err, rows) => {
       //   // When done with the connection, release it
         
       //   if (!err) {
       //     res.render('edit-user', { rows, alert: `${first_name} has been updated.` });
-      //   } else {
-      //     console.log(err);
-      //   }
+        } else {
+          console.log(err);
+        }
+      }
+      ); }
       //   console.log('The data from user table: \n', rows);
       // });
-    } else {
-      console.log(err);
-    }
-    //console.log('The data from user table: \n', rows);
-  });
-}
+//     } else {
+//       console.log(err);
+//     }
+//     //console.log('The data from user table: \n', rows);
+//   });
+// }
 // View Users
 // exports.getUsers = (req, res) => {
 //   // User the connection
@@ -107,7 +110,7 @@ exports.update = (req, res) => {
 exports.find = (req, res) => {
   let searchTerm = req.body.search;
   // User the connection
-  connection.query('SELECT * FROM userr WHERE userId =? ', searchTerm , (err, rows) => {
+  connection.query('SELECT * FROM usser WHERE userId =? ', searchTerm , (err, rows) => {
     if (!err) {
      // res.render('home', { rows });
      res.json("cbon")
@@ -134,7 +137,7 @@ exports.find = (req, res) => {
 // View Users
 exports.view = (req, res) => {
   // User the connection
-  connection.query('SELECT * FROM useer where supprime !=1', (err, rows) => {
+  connection.query('SELECT * FROM usser where supprime !=1', (err, rows) => {
     // When done with the connection, release it
     if (!err) {
       // let removedUser = req.query.removed;

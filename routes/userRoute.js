@@ -13,7 +13,7 @@ const userController = require('../controllers/userController');
 router.post('/adduser',urlencodedParser, userController.create);
 // router.get('/users', userController.getUsers);
 router.get('/search', userController.find);
-router.put('/updateuser/:id', userController.update);
+router.post('/updateuser', urlencodedParser, userController.update);
 router.delete('/deleteuser/:id', urlencodedParser,userController.delete);
 // router.get('/', userController.view);
 router.get('/adduserForm', userController.form);

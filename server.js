@@ -25,10 +25,17 @@ app.set('view engine', 'hbs');
 const mysql = require('mysql');
 
 const router = express.Router();
- const userRoute = require('C:/Users/hp/Desktop/html/routes/userRoute');
+const userRoute = require('C:/Users/hp/Desktop/html/routes/userRoute');
+const commandRoute = require('C:/Users/hp/Desktop/html/routes/commandRoute');
+const commandClientRoute = require('C:/Users/hp/Desktop/html/routes/commandClientRoute');
+
 
 
 app.use("/" ,userRoute);
+app.use("/commande" ,commandRoute);
+app.use("/commandClient" , commandClientRoute);
+
+
 
 const methodeOverride = require("method-override");
 app.use(methodeOverride('_method'));

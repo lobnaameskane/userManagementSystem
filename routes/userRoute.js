@@ -11,13 +11,21 @@ const userController = require('../controllers/userController');
 
 //Routes 
 router.post('/adduser',urlencodedParser, userController.create);
-// router.get('/users', userController.getUsers);
 router.get('/search', userController.find);
 router.post('/updateuser', urlencodedParser, userController.update);
-router.delete('/deleteuser/:id', urlencodedParser,userController.delete);
-// router.get('/', userController.view);
+router.post('/deleteuser', urlencodedParser,userController.delete);
 router.get('/adduserForm', userController.form);
 
 router.get('/', userController.view);
+
+
+
+
+
+// router.post('/addCommand',urlencodedParser, userController.createCommand);
+// router.post('/updateCommand', urlencodedParser,userController.updateCommand);
+// router.post('/deletecommand', urlencodedParser,userController.deleteCommand);
+// router.get('/', userController.viewCommand);
+
 
 module.exports = router
